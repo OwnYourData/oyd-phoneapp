@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.transistorsoft:tsbackgroundfetch:0.2.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tsbackgroundfetch-0.2.0.aar/41a7eb0dd631c56ecb28dbaceea8f783/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tsbackgroundfetch-0.2.0.aar/41a7eb0dd631c56ecb28dbaceea8f783/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tsbackgroundfetch-0.2.0.aar/0613fac09b925bf77c050b40a3d0a75a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tsbackgroundfetch-0.2.0.aar/0613fac09b925bf77c050b40a3d0a75a/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
