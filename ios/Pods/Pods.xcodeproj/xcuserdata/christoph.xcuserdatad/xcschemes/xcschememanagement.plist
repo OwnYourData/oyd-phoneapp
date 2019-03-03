@@ -12,7 +12,7 @@
 		<key>Pods-ownyourdata.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>77</integer>
+			<integer>26</integer>
 		</dict>
 		<key>libsodium.xcscheme</key>
 		<dict>
@@ -22,7 +22,7 @@
 		<key>libsodium.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>76</integer>
+			<integer>25</integer>
 		</dict>
 	</dict>
 </dict>
