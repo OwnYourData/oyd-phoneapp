@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -49,20 +51,22 @@ Statics
 
 Inspired by https://gist.github.com/tkafka/0d94c6ec94297bb67091
 */
+/* eslint react/no-find-dom-node: 0 */
 
 var _ = {
-  each: require('lodash/collection/each'),
-  extend: require('lodash/object/extend'),
-  forEach: require('lodash/collection/forEach'),
-  isEqual: require('lodash/lang/isEqual'),
-  keys: require('lodash/object/keys'),
-  omit: require('lodash/object/omit'),
-  pluck: require('lodash/collection/pluck')
+  each: require('lodash/each'),
+  extend: require('lodash/extend'),
+  forEach: require('lodash/forEach'),
+  isEqual: require('lodash/isEqual'),
+  keys: require('lodash/keys'),
+  omit: require('lodash/omit'),
+  map: require('lodash/map')
 };
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PropTypes = require('prop-types');
 var TransitionGroup = require('react-transition-group/TransitionGroup');
+var Transition = require('react-transition-group/Transition').default;
 var Velocity = require('./lib/velocity-animate-shim');
 
 // Shim requestAnimationFrame for browsers that don't support it, in particular IE 9.
@@ -86,27 +90,40 @@ var VelocityTransitionGroupChild = function (_React$Component) {
   _inherits(VelocityTransitionGroupChild, _React$Component);
 
   function VelocityTransitionGroupChild() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, VelocityTransitionGroupChild);
 
-    return _possibleConstructorReturn(this, (VelocityTransitionGroupChild.__proto__ || Object.getPrototypeOf(VelocityTransitionGroupChild)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = VelocityTransitionGroupChild.__proto__ || Object.getPrototypeOf(VelocityTransitionGroupChild)).call.apply(_ref, [this].concat(args))), _this), _this.lastState = 'appear', _this.componentWillEnter = function (node, appearing) {
+      _this.lastState = appearing ? 'appear' : 'enter';
+    }, _this.componentWillExit = function () {
+      _this.lastState = 'exit';
+    }, _this.endListener = function (node, done) {
+      switch (_this.lastState) {
+        case 'appear':
+          _this.props.willAppearFunc(node, done);
+          break;
+        case 'enter':
+          _this.props.willEnterFunc(node, done);
+          break;
+        case 'exit':
+          _this.props.willLeaveFunc(node, done);
+          break;
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
+  // We trigger our transitions out of endListener because that gives us access to the done callback
+  // we can use to tell the Transition that the animation has completed.
+
+
   _createClass(VelocityTransitionGroupChild, [{
-    key: 'componentWillAppear',
-    value: function componentWillAppear(doneFn) {
-      this.props.willAppearFunc(ReactDOM.findDOMNode(this), doneFn);
-    }
-  }, {
-    key: 'componentWillEnter',
-    value: function componentWillEnter(doneFn) {
-      this.props.willEnterFunc(ReactDOM.findDOMNode(this), doneFn);
-    }
-  }, {
-    key: 'componentWillLeave',
-    value: function componentWillLeave(doneFn) {
-      this.props.willLeaveFunc(ReactDOM.findDOMNode(this), doneFn);
-    }
-  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       // Clear references from velocity cache.
@@ -115,7 +132,15 @@ var VelocityTransitionGroupChild = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return React.Children.only(this.props.children);
+      var transitionProps = _.omit(this.props, _.keys(VelocityTransitionGroupChild.propTypes));
+
+      return React.createElement(Transition, _extends({}, transitionProps, {
+        timeout: null,
+        addEndListener: this.endListener,
+        appear: true,
+        onEnter: this.componentWillEnter,
+        onExit: this.componentWillExit
+      }), this.props.children);
     }
   }]);
 
@@ -179,13 +204,7 @@ var VelocityTransitionGroup = function (_React$Component2) {
       // Pass any props that are not our own on into the TransitionGroup delegate.
       var transitionGroupProps = _.omit(this.props, _.keys(VelocityTransitionGroup.propTypes));
 
-      // Without our custom childFactory, we just get a default TransitionGroup that doesn't do
-      // anything special at all.
-      if (!this.constructor.disabledForTest && !Velocity.velocityReactServerShim) {
-        transitionGroupProps.childFactory = this._wrapChild;
-      }
-
-      return React.createElement(TransitionGroup, transitionGroupProps, this.props.children);
+      return React.createElement(TransitionGroup, transitionGroupProps, !this.constructor.disabledForTest && !Velocity.velocityReactServerShim ? React.Children.map(this.props.children, this._wrapChild) : this.props.children);
     }
   }, {
     key: 'childWillAppear',
@@ -221,7 +240,10 @@ var VelocityTransitionGroup = function (_React$Component2) {
       // symmetry.
       // We use overrideOpts to prevent any "begin" or "complete" callback from triggering in this case, since
       // it doesn't make a ton of sense.
-      this._finishAnimation(node, this.props.leave, { begin: undefined, complete: undefined });
+      this._finishAnimation(node, this.props.leave, {
+        begin: undefined,
+        complete: undefined
+      });
 
       // We're not going to start the animation for a tick, so set the node's display to none (or any
       // custom "hide" style provided) so that it doesn't flash in.
@@ -248,9 +270,6 @@ var VelocityTransitionGroup = function (_React$Component2) {
 
       this._schedule();
     }
-  }, {
-    key: '_shortCircuitAnimation',
-
 
     // document.hidden check is there because animation completion callbacks won't fire (due to
     // chaining off of rAF), which would prevent entering / leaving DOM nodes from being cleaned up
@@ -258,6 +277,9 @@ var VelocityTransitionGroup = function (_React$Component2) {
     //
     // Returns true if this did short circuit, false if lifecycle methods should continue with
     // their animations.
+
+  }, {
+    key: '_shortCircuitAnimation',
     value: function _shortCircuitAnimation(animationProp, doneFn) {
       if (document.hidden || this._parseAnimationProp(animationProp).animation == null) {
         doneFn();
@@ -326,8 +348,8 @@ var VelocityTransitionGroup = function (_React$Component2) {
         return;
       }
 
-      var nodes = _.pluck(queue, 'node');
-      var doneFns = _.pluck(queue, 'doneFn');
+      var nodes = _.map(queue, 'node');
+      var doneFns = _.map(queue, 'doneFn');
 
       var parsedAnimation = this._parseAnimationProp(animationProp);
       var animation = parsedAnimation.animation;
@@ -435,7 +457,14 @@ var VelocityTransitionGroup = function (_React$Component2) {
   }, {
     key: '_wrapChild',
     value: function _wrapChild(child) {
+      // Need to guard against falsey children, which React will sometimes pass
+      // in.
+      if (!child) {
+        return null;
+      }
+
       return React.createElement(VelocityTransitionGroupChild, {
+        key: child.key,
         willAppearFunc: this.childWillAppear,
         willEnterFunc: this.childWillEnter,
         willLeaveFunc: this.childWillLeave

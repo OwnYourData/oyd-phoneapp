@@ -1,3 +1,6 @@
+#### V 1.1.X  
+For [V2 docs click here](https://wix.github.io/react-native-navigation/v2/#/)
+
 - Getting started
  - [Installation - iOS](/installation-ios)
  - [Installation - Android](/installation-android)

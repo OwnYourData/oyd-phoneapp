@@ -37,16 +37,25 @@
 		"@storybook/addon-links": "^3.3.6",
 		"@storybook/react-native": "^3.3.6",
 		"add": "^2.0.6",
+		"atob": "^2.1.0",
 		"base64-js": "^1.2.3",
+		"cryptiles": "^4.1.2",
+		"debug": "^2.6.9",
+		"deep-extend": "^0.5.1",
 		"esdoc": "^1.0.4",
 		"esdoc-ecmascript-proposal-plugin": "^1.0.0",
 		"esdoc-flow-type-plugin": "^1.0.1",
 		"esdoc-jsx-plugin": "^1.0.0",
 		"esdoc-react-plugin": "^1.0.1",
 		"esdoc-standard-plugin": "^1.0.0",
+		"extend": "^3.0.2",
 		"immutable": "^3.8.2",
 		"lodash": "^4.17.11",
+		"macaddress": "^0.2.9",
+		"marked": "^0.3.9",
+		"merge": "^1.2.1",
 		"moment": "^2.20.1",
+		"randomatic": "^3.0.0",
 		"react": "16.0.0",
 		"react-native": "0.51.0",
 		"react-native-android-location-enabler": "^1.0.5",
@@ -88,16 +97,8 @@
 		"redux-saga": "^0.16.0",
 		"styled-components": "^2.4.0",
 		"uglify-es": "3.2.2",
-		"yarn": "^1.5.1",
-		"marked": "^0.3.9",
 		"url-parse": "^1.4.3",
-		"macaddress": "^0.2.9",
-		"cryptiles": "^4.1.2",
-		"deep-extend": "^0.5.1",
-		"atob": "^2.1.0",
-		"randomatic": "^3.0.0",
-		"merge": "^1.2.1",
-		"extend": "^3.0.2"
+		"yarn": "^1.5.1"
 	},
 	"devDependencies": {
 		"babel-eslint": "^8.0.3",
@@ -113,8 +114,7 @@
 		"prop-types": "^15.6.0",
 		"react-dom": "^16.0.1",
 		"react-native-debugger-open": "^0.3.15",
-		"react-test-renderer": "16.0.0",
-		"debug": "^2.6.9"
+		"react-test-renderer": "16.0.0"
 	},
 	"jest": {
 		"preset": "react-native"

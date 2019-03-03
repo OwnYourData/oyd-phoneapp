@@ -100,7 +100,7 @@ class FileSystemBlobStore {
       this._storedBlob = fs.readFileSync(this._blobFilename);
       this._storedMap = JSON.parse(fs.readFileSync(this._mapFilename));
     } catch (e) {
-      this._storedBlob = new Buffer(0);
+      this._storedBlob = Buffer.alloc(0);
       this._storedMap = {};
     }
     this._dirty = false;
@@ -289,8 +289,9 @@ function slashEscape(str) {
 }
 
 function supportsCachedData() {
-  var script = new vm.Script('""', {produceCachedData: true});
-  return script.cachedDataProduced != null;
+  const script = new vm.Script('""', {produceCachedData: true});
+  // chakracore, as of v1.7.1.0, returns `false`.
+  return script.cachedDataProduced === true;
 }
 
 function getCacheDir() {
@@ -298,7 +299,12 @@ function getCacheDir() {
   const dirname = typeof process.getuid === 'function'
     ? 'v8-compile-cache-' + process.getuid()
     : 'v8-compile-cache';
-  const cacheDir = path.join(os.tmpdir(), dirname, process.versions.v8);
+  const version = typeof process.versions.v8 === 'string'
+    ? process.versions.v8
+    : typeof process.versions.chakracore === 'string'
+      ? 'chakracore-' + process.versions.chakracore
+      : 'node-' + process.version;
+  const cacheDir = path.join(os.tmpdir(), dirname, version);
   return cacheDir;
 }
 

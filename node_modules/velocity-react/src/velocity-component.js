@@ -36,12 +36,13 @@ Methods:
    corresponds to an event but not a particular model state change (e.g. a "bump" when a click
    occurs).
 */
+/* eslint react/no-find-dom-node: 0 */
 
 var _ = {
-  forEach: require('lodash/collection/forEach'),
-  isEqual: require('lodash/lang/isEqual'),
-  keys: require('lodash/object/keys'),
-  omit: require('lodash/object/omit'),
+  forEach: require('lodash/forEach'),
+  isEqual: require('lodash/isEqual'),
+  keys: require('lodash/keys'),
+  omit: require('lodash/omit'),
 };
 
 var React = require('react');
@@ -70,11 +71,11 @@ class VelocityComponent extends React.Component {
     }
   }
 
-  componentWillUpdate(newProps, newState) {
-    if (!_.isEqual(newProps.animation, this.props.animation)) {
-      if (newProps.interruptBehavior === 'stop') {
+  componentDidUpdate(oldProps) {
+    if (!_.isEqual(oldProps.animation, this.props.animation)) {
+      if (this.props.interruptBehavior === 'stop') {
         this._stopAnimation();
-      } else if (newProps.interruptBehavior === 'finish') {
+      } else if (this.props.interruptBehavior === 'finish') {
         this._finishAnimation();
       }
 
@@ -155,7 +156,7 @@ class VelocityComponent extends React.Component {
   // completion handlers and associated react objects. This crudely clears these references.
   _clearVelocityCache(target) {
     if (target.length) {
-      _.forEach(target, this._clearVelocityCache)
+      _.forEach(target, this._clearVelocityCache);
     } else {
       Velocity.Utilities.removeData(target, ['velocity', 'fxqueue']);
     }

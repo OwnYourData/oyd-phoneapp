@@ -5,7 +5,7 @@
 
 # Official Sentry Command Line Interface
 
-[![Travis](https://img.shields.io/travis/getsentry/sentry-cli.svg)](https://travis-ci.org/getsentry/sentry-cli)
+[![Travis](https://img.shields.io/travis/com/getsentry/sentry-cli.svg)](https://travis-ci.com/getsentry/sentry-cli)
 [![AppVeyor](https://img.shields.io/appveyor/ci/sentry/sentry-cli.svg)](https://ci.appveyor.com/project/sentry/sentry-cli)
 [![GitHub release](https://img.shields.io/github/release/getsentry/sentry-cli.svg)](https://github.com/getsentry/sentry-cli/releases/latest)
 [![npm version](https://img.shields.io/npm/v/@sentry/cli.svg)](https://www.npmjs.com/package/@sentry/cli)
@@ -38,11 +38,8 @@ install as root:
 
     sudo npm install -g @sentry/cli --unsafe-perm
 
-By default, this package will download sentry-cli from
-[releases](https://github.com/getsentry/sentry-cli/releases). This should work
-fine for most people. If you are experiencing issues with downloading from
-GitHub, you may need to use a different download mirror. To use a custom CDN,
-set the npm config property `sentrycli_cdnurl`. The downloader will append
+By default, this package will download sentry-cli from the CDN managed by [Fastly](https://www.fastly.com/).
+To use a custom CDN, set the npm config property `sentrycli_cdnurl`. The downloader will append
 `"/<version>/sentry-cli-<dist>"`.
 
 ```sh
@@ -80,7 +77,7 @@ we recommend you to use the `latest` tag. To use it, run:
 
 ```sh
 docker pull getsentry/sentry-cli
-docker run --rm -it -v $(pwd):/work getsentry/sentry-cli sentry-cli --help
+docker run --rm -v $(pwd):/work getsentry/sentry-cli --help
 ```
 
 ## Compiling
@@ -88,7 +85,7 @@ docker run --rm -it -v $(pwd):/work getsentry/sentry-cli sentry-cli --help
 In case you want to compile this yourself, you need to install at minimum the
 following dependencies:
 
-* Rust 1.23 and Cargo
+* Rust stable and Cargo
 * Make, CMake and a C compiler
 * OpenSSL 1.0.2n with development headers
 * Curl 7.50 with development headers
@@ -103,10 +100,9 @@ headers. For instance:
     $ CFLAGS=-I/usr/local/opt/openssl/include/ cargo build
 
 Also, there is a Dockerfile that builds an Alpine-based Docker image with
-`sentry-cli` in the PATH. Note that this image is not minimal yet, as we are not
-able to compail against musl just yet. To build and use it, run:
+`sentry-cli` in the PATH. To build and use it, run:
 
 ```sh
 docker build -t sentry-cli .
-docker run --rm -it -v $(pwd):/work sentry-cli sentry-cli --help
+docker run --rm -v $(pwd):/work sentry-cli --help
 ```

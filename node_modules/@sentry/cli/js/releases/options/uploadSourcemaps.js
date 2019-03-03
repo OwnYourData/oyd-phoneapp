@@ -9,11 +9,12 @@ module.exports = {
   },
   rewrite: {
     param: '--rewrite',
+    invertedParam: '--no-rewrite',
     type: 'boolean',
   },
   sourceMapReference: {
-    param: '--no-sourcemap-reference',
-    type: 'inverted-boolean',
+    invertedParam: '--no-sourcemap-reference',
+    type: 'boolean',
   },
   stripPrefix: {
     param: '--strip-prefix',
@@ -29,6 +30,10 @@ module.exports = {
   },
   urlPrefix: {
     param: '--url-prefix',
+    type: 'string',
+  },
+  urlSuffix: {
+    param: '--url-suffix',
     type: 'string',
   },
   ext: {

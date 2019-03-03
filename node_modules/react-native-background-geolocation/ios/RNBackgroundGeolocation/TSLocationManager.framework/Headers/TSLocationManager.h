@@ -29,6 +29,7 @@
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic) NSDate *stoppedAt;
 @property (nonatomic) UIBackgroundTaskIdentifier preventSuspendTask;
+@property (nonatomic, readonly) BOOL clientReady;
 
 + (TSLocationManager *)sharedInstance;
 
@@ -50,6 +51,7 @@
 - (void) removeListener:(NSString*)event callback:(void(^)(id))callback;
 - (void) un:(NSString*)event callback:(void(^)(id))callback;
 - (void) removeListeners:(NSString*)event;
+- (void) removeListenersForEvent:(NSString*)event;
 - (void) removeListeners;
 
 #pragma mark - Core API Methods

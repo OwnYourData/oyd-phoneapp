@@ -26,19 +26,30 @@ public class RNI18nModule extends ReactContextBaseJavaModule {
   }
 
   private String toLanguageTag(Locale locale) {
+    String languageTag;
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      return locale.toLanguageTag();
+      languageTag = locale.toLanguageTag();
+    } else {
+      StringBuilder builder = new StringBuilder();
+      builder.append(locale.getLanguage());
+
+      if (locale.getCountry() != null) {
+        builder.append("-");
+        builder.append(locale.getCountry());
+      }
+
+      languageTag = builder.toString();
     }
 
-    StringBuilder builder = new StringBuilder();
-    builder.append(locale.getLanguage());
-
-    if (locale.getCountry() != null) {
-      builder.append("-");
-      builder.append(locale.getCountry());
+    if (languageTag.matches("^(iw|in|ji).*")){
+      return languageTag
+        .replace("iw","he")
+        .replace("in","id")
+        .replace("ji","yi");
     }
 
-    return builder.toString();
+    return languageTag;
   }
 
   private WritableArray getLocaleList() {

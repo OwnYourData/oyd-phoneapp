@@ -98,6 +98,7 @@ NSString *rnReportPath = @"";
                                                                                                              }];
     XCTAssertEqualObjects(crumb1.message, @"test");
     XCTAssertEqualObjects(crumb1.category, @"action");
+    XCTAssertNotNil(crumb1.timestamp, @"timestamp");
     
     NSDate *date = [NSDate date];
     SentryBreadcrumb *crumb2 = [SentryJavaScriptBridgeHelper createSentryBreadcrumbFromJavaScriptBreadcrumb:@{
@@ -109,6 +110,15 @@ NSString *rnReportPath = @"";
     XCTAssertEqual(crumb2.level, kSentrySeverityInfo);
     XCTAssertEqualObjects(crumb2.category, @"action");
     XCTAssertTrue([crumb2.timestamp compare:date]);
+    
+    SentryBreadcrumb *crumb3 = [SentryJavaScriptBridgeHelper createSentryBreadcrumbFromJavaScriptBreadcrumb:@{
+                                                                                                              @"message": @"test",
+                                                                                                              @"category": @"action",
+                                                                                                              @"timestamp": @""
+                                                                                                              }];
+    XCTAssertEqualObjects(crumb3.message, @"test");
+    XCTAssertEqualObjects(crumb3.category, @"action");
+    XCTAssertNotNil(crumb3.timestamp, @"timestamp");
 }
 
 - (NSDictionary *)getCrashReport {
@@ -224,6 +234,12 @@ NSString *rnReportPath = @"";
     XCTAssertEqualObjects(((SentryFrame *)[frames2 objectAtIndex:0]).fileName, @"app:///index.js");
     XCTAssertEqualObjects(((SentryFrame *)[frames2 objectAtIndex:0]).lineNumber, @"2");
     XCTAssertEqualObjects(((SentryFrame *)[frames2 objectAtIndex:0]).columnNumber, @"2");
+}
+
+- (void)testCordovaEvent {
+    rnReportPath = @"Resources/cordova-exception";
+    SentryEvent *sentryEvent1 = [SentryJavaScriptBridgeHelper createSentryEventFromJavaScriptEvent:[self getCrashReport]];
+    XCTAssertNotNil(sentryEvent1.exceptions);
 }
 
 @end
