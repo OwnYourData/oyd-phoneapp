@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>OwnYourData</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.4.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>9d72c46c57203b924b373e07a1e5c147f801b3ed</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>App wants access to the music library</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App wants access to the bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>App wants access to the calendar</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App wants access to the camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App wants access to the loction in the background</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App wants access to the loction in the background</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App wants access to the loction</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App wants access to the microsphone</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion updates increase battery efficiency by intelligently toggling location-services when device is detected to be moving</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App wants access to the photo library</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>App wants access to the Speech Recognition</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Arial Bold Italic.ttf</string>
+		<string>Arial Bold.ttf</string>
+		<string>Arial Italic.ttf</string>
+		<string>Arial.ttf</string>
+		<string>Calibri.ttf</string>
+		<string>Calibri Bold Italic.ttf</string>
+		<string>Calibri Bold.ttf</string>
+		<string>Calibri Italic.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Calibri Bold Italic.TTF</string>
+		<string>Calibri Bold.TTF</string>
+		<string>Calibri Italic.TTF</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

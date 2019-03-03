@@ -1,0 +1,13 @@
+for_platform :ios do
+  for_lane :beta do
+		app_identifier 'eu.ownyourdata.app'
+		team_id '39G4BK327Q'
+		apple_id 'christoph.fabianek@gmail.com'
+  end
+
+  for_lane :testFlight do
+	app_identifier 'eu.ownyourdata.app'
+	team_id '39G4BK327Q'
+	apple_id 'christoph.fabianek@gmail.com'
+  end
+end

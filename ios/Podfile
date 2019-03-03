@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ownyourdata' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for ownyourdata
+	pod 'libsodium', '~> 1.0'
+
+  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
+
+  pod 'RNBackgroundGeolocation', :path => '../node_modules/react-native-background-geolocation'
+
+  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+
+  pod 'react-native-orientation-locker', :path => '../node_modules/react-native-orientation-locker'
+
+end

@@ -1,0 +1,28 @@
+fastlane_version "2.68.0"
+
+generated_fastfile_id "349292e8-cf8a-4371-a063-fb4d84f7c8ad"
+
+default_platform(:ios)
+
+platform :ios do
+    lane :beta do |values|
+
+      gym(scheme: 'ownyourdata', workspace: 'ownyourdata.xcworkspace', include_bitcode: true)
+
+      emails = values[:test_email] ? values[:test_email] : [] # You can list more emails here
+      groups = values[:test_email] ? nil : nil # You can define groups on the web and reference them here
+
+      crashlytics(api_token: '9d72c46c57203b924b373e07a1e5c147f801b3ed',
+                     build_secret: '33eff915e2ab3cbbef42f04aaf6d3a46c5a39d218d7dae727cf45362046f07c2',
+                           emails: emails,
+                           groups: groups,
+                            notes: 'Distributed with fastlane', # Check out the changelog_from_git_commits action
+                    notifications: true) # Should this distribution notify your testers via email?
+    end
+
+    lane :deployToFlight do
+                build_app(scheme: 'ownyourdata', workspace: 'ownyourdata.xcworkspace', include_bitcode: true)
+                upload_to_testflight
+        end
+end
+

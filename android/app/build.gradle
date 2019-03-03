@@ -1,0 +1,130 @@
+apply plugin: "com.android.application"
+
+import com.android.build.OutputFile
+apply plugin: 'io.fabric'
+apply from: "../../node_modules/react-native-sentry/sentry.gradle"
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+project.ext.sentryCli = [
+	logLevel: "debug"
+]
+
+project.ext.react = [
+    entryFile: "index.js"
+]
+
+apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-sentry/sentry.gradle"
+
+/**
+ * Set this to true to create two separate APKs instead of one:
+ *   - An APK that only works on ARM devices
+ *   - An APK that only works on x86 devices
+ * The advantage is the size of the APK is reduced by about 4MB.
+ * Upload all the APKs to the Play Store and people will download
+ * the correct one based on the CPU architecture of their device.
+ */
+def enableSeparateBuildPerCPUArchitecture = false
+
+/**
+ * Run Proguard to shrink the Java bytecode in release builds.
+ */
+def enableProguardInReleaseBuilds = false
+
+def MYAPP_RELEASE_STORE_FILE = "my-release-key.keystore"
+def MYAPP_RELEASE_KEY_ALIAS = "my-key-alias"
+def MYAPP_RELEASE_STORE_PASSWORD = "w00fw00f"
+def MYAPP_RELEASE_KEY_PASSWORD = "w00fw00f"
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.3'
+    defaultConfig {
+        applicationId "com.ownyourdata"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 11
+        versionName "0.4.1(1)"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        multiDexEnabled = true
+    }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86"
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    // applicationVariants are e.g. debug, release
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def abi = output.getFilter(OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+}
+
+dependencies {
+    compile project(':react-native-orientation')
+    compile project(':react-native-sentry')
+    compile project(':react-native-camera')
+    compile project(':react-native-background-fetch')
+    compile (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+    }
+    compile ("com.google.android.gms:play-services-vision:11.8.0") {
+        force = true;
+    }
+    compile project(':react-native-android-location-enabler')
+    compile project(':react-native-sha256')
+    compile project(':react-native-libsodium')
+    compile project(':react-native-geocoder')
+    compile project(':react-native-fused-location')
+    compile project(':react-native-restart')
+    compile project(':react-native-exception-handler')
+    compile project(':react-native-svg')
+    compile project(':react-native-spinkit')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-navigation')
+    compile project(':react-native-i18n')
+    compile 'com.android.support:multidex:1.0.3'
+    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile "com.android.support:appcompat-v7:26.1.0"
+    compile "com.facebook.react:react-native:+"  // From node_modules
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true;
+    }
+}
+
+// Run this once to be able to run the application with BUCK
+// puts all compile dependencies into folder libs for BUCK to use
+task copyDownloadableDepsToLibs(type: Copy) {
+    from configurations.compile
+    into 'libs'
+}

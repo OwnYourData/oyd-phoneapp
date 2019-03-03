@@ -1,0 +1,194 @@
+{
+	"info": {
+		"name": "OwnYourData API",
+		"_postman_id": "8cc844d0-37b6-ab53-624a-7327aff0fd28",
+		"description": "Collection by ANIMAL.at",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /oauth/token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d328d48c-60bb-42ff-b9af-e8a227a805bb",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('token', data.access_token);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user_a@ownyourdata.eu",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "user_a",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/oauth/token",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "Request token to access resources associated to a user"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/modules/index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{baseurl}}/api/modules/index",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"modules",
+						"index"
+					]
+				},
+				"description": "Get list of mobile applications to be displayed"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/repos/{:identifier}/pub_key",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{baseurl}}/api/repos/{{identifier}}/pub_key",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"repos",
+						"{{identifier}}",
+						"pub_key"
+					]
+				},
+				"description": "Get the public key for a given repo (to be used when writing data into a repo)"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/repos/{:identifier}/items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{baseurl}}/api/repos/{{identifier}}/items",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"repos",
+						"{{identifier}}",
+						"items"
+					]
+				},
+				"description": "Write a record into a given repo"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e1cd11c8-0af1-4cc3-8766-a7dfe9d2d9d6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ddc046bf-3573-417d-9ffb-ae3d37470fa1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "28084fd2-4628-4554-a61d-05bee9ccaf2e",
+			"key": "baseurl",
+			"value": "https://mobile-api.data-vault.eu",
+			"type": "text"
+		},
+		{
+			"id": "36c1d4ba-8419-459f-9bd9-9e1da8d7ba0d",
+			"key": "identifier",
+			"value": "eu.ownyourdata.location",
+			"type": "text"
+		}
+	]
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ownyourdata.iml" filepath="$PROJECT_DIR$/ownyourdata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-android-location-enabler/android/react-native-android-location-enabler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-android-location-enabler/android/react-native-android-location-enabler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-background-fetch/android/react-native-background-fetch.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-background-fetch/android/react-native-background-fetch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-camera/android/react-native-camera.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-camera/android/react-native-camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-exception-handler/android/react-native-exception-handler.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-exception-handler/android/react-native-exception-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-fetch-blob/android/react-native-fetch-blob.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-fetch-blob/android/react-native-fetch-blob.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-fused-location/android/react-native-fused-location.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-fused-location/android/react-native-fused-location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-geocoder/android/react-native-geocoder.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-geocoder/android/react-native-geocoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-i18n/android/react-native-i18n.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-i18n/android/react-native-i18n.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-libsodium/android/react-native-libsodium.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-libsodium/android/react-native-libsodium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-navigation/android/app/react-native-navigation.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-navigation/android/app/react-native-navigation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-orientation/android/react-native-orientation.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-orientation/android/react-native-orientation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-restart/android/react-native-restart.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-restart/android/react-native-restart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-sentry/android/react-native-sentry.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-sentry/android/react-native-sentry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-sha256/android/react-native-sha256.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-sha256/android/react-native-sha256.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-spinkit/android/react-native-spinkit.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-spinkit/android/react-native-spinkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-svg/android/react-native-svg.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-svg/android/react-native-svg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/../node_modules/react-native-vector-icons/android/react-native-vector-icons.iml" />
+    </modules>
+  </component>
+</project>

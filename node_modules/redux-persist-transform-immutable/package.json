@@ -1,0 +1,30 @@
+{
+  "name": "redux-persist-transform-immutable",
+  "version": "4.3.0",
+  "description": "immutable.js transform for redux-persist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "transit-immutable-js": "^0.7.0",
+    "transit-js": "^0.8.846"
+  },
+  "peerDependencies": {
+    "redux-persist": "^4.0.0",
+    "immutable": ">= 3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rt2zz/redux-persist-transform-immutable.git"
+  },
+  "keywords": [
+    "redux",
+    "redux-persist",
+    "redux-persist-transform",
+    "compression"
+  ],
+  "homepage": "https://github.com/rt2zz/redux-persist-transform-immutable",
+  "author": "rt2zz <zack@root-two.com>",
+  "license": "MIT"
+}
