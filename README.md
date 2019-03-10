@@ -1,58 +1,32 @@
-# OwnYourData Mobile App
+# <img src="https://github.com/OwnYourData/oyd-mobile/raw/master/assets/logo_grey.png" width="92"> OYD-Mobile    
+Die [OwnYourData](https://www.ownyourdata.eu) App ermöglicht den Zugriff auf deine Apps und Daten von deinem Smartphone. Zusätzlich hast du die Möglichkeit deine Ortsdaten im Datentresor zu protokollieren.
 
-Android
-Background task works with headless when in the app is in the background.
-
-Test - plug the phone in via usb
-- yarn ta
-once launched
-- yarn run-job
-open a new terminal
-- yarn log-job
-
-
-App.js has launch func line 64
-
+&nbsp;    
 
 <p align="center">
-  <a href="https://www.ownyourdata.eu/">
-    <img alt="OwnYourData" title="OwnYourData" src="https://i0.wp.com/www.ownyourdata.eu/wp-content/uploads/2016/06/Logo-%C2%A9-OwnYourData.jpg?ssl=1" width="450">
-  </a>
-</p>
-
-<p align="center">
-  Your personal data vault.
-</p>
-
-<p align="center">
-  <a href="TODO: Link">
+  <a href="https://itunes.apple.com/us/app/ownyourdata/id1176891221?mt=8">
     <img alt="Download on the App Store" title="App Store" src="http://i.imgur.com/0n2zqHD.png" width="140">
   </a>
 
-  <a href="TODO: Link">
+  <a href="https://play.google.com/store/apps/details?id=com.ownyourdata">
     <img alt="Get it on Google Play" title="Google Play" src="http://i.imgur.com/mtGRPuM.png" width="140">
   </a>
 </p>
 
-## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Build Process](#build-process)
 
-## Introduction
+## Verbessere den mobilen Zugriff auf den OwnYourData Datentresor
 
-TODO: Add Intro Text
+Bitte melde Fehler oder Vorschläge im [GitHub Issue-Tracker](https://github.com/OwnYourData/oyd-phoneapp/issues) und halte dich dabei an die [Contributor Guidelines](https://github.com/twbs/ratchet/blob/master/CONTRIBUTING.md).
 
-**Available for both iOS and Android.**
+Wenn du selbst an der App mitentwickeln möchtest, folge diesen Schritten:
 
-## Features
+1. Fork it!
+2. erstelle einen Feature Branch: `git checkout -b my-new-feature`
+3. Commit deine Änderungen: `git commit -am 'Add some feature'`
+4. Push in den Branch: `git push origin my-new-feature`
+5. Sende einen Pull Request
 
-A few of the things you can do with the OwnYourData app:
-
-* Connect to your private data vault or use one provided by OwnYourData.
-* Access all applications from your data vault.
-* Collect and encrypt your location data and sent them to your data vault.
 
 ## Build Process
 
